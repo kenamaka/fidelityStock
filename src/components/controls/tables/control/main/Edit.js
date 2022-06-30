@@ -1,41 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation, useNavigate,  } from 'react-router-dom'
+import { NavLink, useLocation,  } from 'react-router-dom'
 import Axios from 'axios'
 import axios from 'axios'
-import { FaArrowLeft, FaArrowRight, FaEye, FaEyeSlash } from 'react-icons/fa'
+import { FaArrowLeft } from 'react-icons/fa'
+import Unknown from '../../../../Unknown'
 
 
 
 const Edit = () => {
   const location = useLocation()
   const userid = location.pathname.split("/")[2];
-  const [user, setUser] = useState({
-    
-    firstname: "",
-    lastname: "",
-    email: "",
-    username: "",
-    role:"",
-     
-  })
-
   const [message, setMessage] = useState("")
   const [password, setPassword] = useState("")
+  const [firstname, setFirstname] = useState("")
+  const [lastname, setLastname] = useState("")
+  const [role, setRole] = useState("")
+  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
   
-  const navigate = useNavigate();
+  
 
 
-  const handleChange = ({ currentTarget: input }) => {
-    setUser ({...user, [input.name]:input.value})
-  }
+
+  
   const handleSubmit = (e) => {
     e.preventDefault()
-      Axios.put('http://localhost:8000/api/update', {
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-      username: user.username,
-      role: user.role,
+      Axios.put('https://server.fidelitystock.us/api/update', {
+      firstname,
+      lastname,
+      email,
+      username,
+      role,
       password
       
     })
@@ -51,19 +46,21 @@ const Edit = () => {
       }) 
   };
   useEffect(() => {
-    const res = axios.get(`http://localhost:8000/api/userid/${userid}`).then((response) => {
-      setUser({
-        firstname: response.data[0].first_name,
-        lastname: response.data[0].last_name,
-        email: response.data[0].email,
-        username: response.data[0].username,
-        role:response.data[0].role
-      })
-      setPassword(response.data[0].password)
+    const res = axios.get(`https://server.fidelitystock.us/api/userid/${userid}`).then((response) => {
+      
+        setFirstname(response.data[0].first_name)
+        setLastname(response.data[0].last_name)
+        setEmail(response.data[0].email)
+        setUsername(response.data[0].username)
+        setRole(response.data[0].role)
+         setPassword(response.data[0].password)
       console.log(response.data)
     })
   },[]
   )
+  if (!email) {
+  return <Unknown/>
+  }
   return (
     <>
     
@@ -88,11 +85,10 @@ const Edit = () => {
               <div className="row form-group">
                 <div className="col-md-6 mb-3 mb-md-0">
                   <label className="text-dark" htmlFor="fname">First Name</label>
-                  <input type="text" id="fname" name='firstname' value={user.firstname} onChange={handleChange} className="form-control" required/>
-                </div>
+                  <input type="text" id="fname" name='firstname' value={firstname}  className="form-control" />                </div>
                 <div className="col-md-6">
                   <label className="text-dark" htmlFor="lname">Last Name</label>
-                  <input type="text" id="lname" name='lastname' className="form-control" value={user.lastname} onChange={handleChange} required />
+                  <input type="text" id="lname" name='lastname' className="form-control" value={lastname}  />
                 </div>
               </div>
 
@@ -100,7 +96,7 @@ const Edit = () => {
                 
                 <div className="col-md-12">
                   <label className="text-dark" htmlFor="email">Email</label> 
-                  <input type="email" id="email" name='email' className="form-control" value={ user.email } onChange={handleChange} required />
+                  <input type="email" id="email" name='email' className="form-control" value={ email }/>
                 </div>
               </div>
 
@@ -108,14 +104,14 @@ const Edit = () => {
                 
                 <div className="col-md-12">
                   <label className="text-dark" htmlFor="subject">Username</label> 
-                  <input type="text" id="username" name='username' className="form-control" value={user.username} onChange={handleChange}  required/>
+                  <input type="text" id="username" name='username' className="form-control" value={username} />
                 </div>
                   </div>
               
                   
                  <div className="form-group">
     <label htmlFor="exampleFormControlSelect1" >Select User Role</label>
-    <select className="form-control" name='role' value={user.role} onChange={handleChange}>
+    <select className="form-control" name='role' value={role} onChange={(e) => {setRole(e.target.value)}}>
       <option>User</option>
       <option>Moderator</option>
       

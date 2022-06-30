@@ -1,8 +1,7 @@
-
-import background from './assets/header3.jpg'
 import { NavLink } from 'react-router-dom'
 
-
+import image from './assets/image.png'
+import  head from './assets/image2.webp'
 
 import laptop from './assets/laptop.png'
 import back from './assets/header.jpg'
@@ -22,7 +21,8 @@ import support from './assets/support.png'
 import community from './assets/community.png'
 
 
-import { FaLandmark, FaUserLock, FaHandHoldingUsd, FaUmbrella, FaCheck } from 'react-icons/fa'
+import { FaCheck } from 'react-icons/fa'
+import Featured from './Featured'
 
 
 const Home = ({plan}) => {
@@ -33,105 +33,45 @@ const Home = ({plan}) => {
     return (
         <>
       
-    <section className="site-hero" style={{ backgroundImage: `url(${background})`  }} >
-    <div className="container">
+        <section className="site-hero"  >
+          <div className='container'>
+    
         <div className="row intro-text align-items-center justify-content-center">
-            <div className="col-md-10 text-center pt-5">
+            <div className="col-md-6  pt-5">
 
-                <h1 className="site-heading site-animate">Welcome to <strong className="d-block">Fidelity <span className="text-default">Stock</span>.</strong></h1>
-          <strong className="d-block text-white text-uppercase letter-spacing" style={{ color:"whitesmoke", fontWeight: 600 }}><p>Our team of experienced traders are happy to aid you conduct all research and trading for all ours members with our winning business models to skyrocket earnings</p></strong>
+                <h1 className="site-heading text-dark site-animate">Welcome to <strong className="d-block">Fidelity <span className="text-success">Stock</span>.</strong></h1>
+                <strong className="d-block text-dark text-uppercase letter-spacing" style={{ color: "whitesmoke", fontWeight: 600 }}>
+                  <p className='text-dark'>Our team of experienced traders are happy to aid conduct all research and trading for all ours members with our winning business models to skyrocket earnings</p></strong>
           <br/>
           <div style={{ marginTop:15 }}>
 
-          <button className='btn btn-primary px-4 py-2 btn-sm smoothscroll'><NavLink className='btncolor' onClick={plan} to="register" class="  btn btn-primary px-4 py-2 btn-sm smoothscroll">Open a Free Account</NavLink></button>
+          <button className='btn btn-success px-4 py-2 btn-sm smoothscroll'><NavLink className='btncolor' onClick={plan} to="register" class="  btn btn-primary px-4 py-2 btn-sm smoothscroll">Open a Free Account</NavLink></button>
                 
           </div>
-        </div>
+              </div>
+              <div className="col-md-6 hidden">
+                
+                    <img src={head} alt="" width="600px"/>
+                
+            </div>
     
-        </div>
-    </div>
+            </div>
+            </div>
+    
     </section>
-            <section className='site-section'>
-                <div className='container'>
-                <div className="row">
-				<div className="section-heading text-center col-md-12">
-                            <h2><strong><span className='text-default'>About</span> Fidelity Stock Trade</strong></h2>
-                            <p className="lead">An epicenter traditional financial institution is not. We set out to give investors better,<br/> simpler and more profitable ways to become financially <br/>successful and secure. </p>				</div>
-                    </div>
-                    <div className="row">
-
-<div className="col-md-12 mb-md-5 mb-0 col-lg-4 ">
-    <div className='head'>
-      <h1><strong>We have been known to give investors the better choice.</strong></h1>
-     
-    </div>
-  </div>
-<div className="col-md-12 mb-md-5 mb-0 col-lg-8 ">
-  
-    <div>
-          <p className="lead">With over 153,000 investments under our management, $5 billion+ in assets under our administration, over 11 industry awards, we have made Global Crypto Expert the safe haven for investors who want to trust
-                    their financial partner to be capable of helping them reach their financial goals, and in due time, without the fear of disappointments.</p>
-           <p className="lead">Our investors are confident in our ability to make a promise and fulfill that promise. We go beyond our promise to put smiles on the faces of our clients. We have investors from all over the world, who have been with us for over seven years now and counting.</p>
-    </div>
-    </div>
-</div>
-          </div> 
-          <div className="container">
-            <div className="row services">
-              <div className='col-md-12 col-lg-3 along'>
-                <div className='icons' style={{ backgroundColor:' #007bff' }}>
-                  <FaLandmark className='ico' />
-                </div>
-                <div className='servicetext'>
-                  <h5>We Trade<br />Forex</h5>
-                  </div>
-
-              </div>
-              <div className='col-md-12 col-lg-3 along'>
-                <div className='icons' style={{ backgroundColor:'#dc3545' }}>
-                  <FaUserLock className='ico' />
-                </div>
-                <div className='servicetext'>
-                  <h5>Cryptocurrency<br />investment</h5>
-                  </div>
-
-              </div>
-              <div className='col-md-12 col-lg-3 along'>
-                <div className='icons' style={{ backgroundColor:'#28a745' }}>
-                  <FaHandHoldingUsd className='ico' />
-                </div>
-                <div className='servicetext'>
-                  <h5>We Trade on<br />Stock</h5>
-                  </div>
-
-              </div>
-              <div className='col-md-12 col-lg-3 along'>
-                <div className='icons' style={{ backgroundColor:'#6c757d' }}>
-                  <FaUmbrella className='ico' />
-                </div>
-                <div className='servicetext'>
-                  <h5>Gold<br />investment</h5>
-                  </div>
-
-              </div>
-
-
-
-              </div>
-            </div>          
-        </section>
+         <Featured/>
       <section className="site-section" >
 		<div className="container ">
 			<div className="row mb-5 align-items-center">
 			
-				<div className="col-lg-5 pl-lg-5">
+				<div className="col-lg-5">
 					<div className="section-heading">
 						<h2><strong>You can trust us to help make your financial dream come true</strong></h2>
 					</div>
 					<p className="lead">We are your trustworthy financial partner. We're trusted by over 1,000 successful investors from across the world. We want you to be on that list.</p>
 
               </div>
-              <div className="col-lg-7 pr-lg-5 mb-5 mb-lg-0">
+              <div className="col-lg-7">
 					<img src={laptop} alt="Image placeholder" className="img-fluid" />
 				</div>
 			</div>
@@ -187,7 +127,7 @@ const Home = ({plan}) => {
             <div className='row mb-4'>
               <div className='col-md-12'>
                 <div className='section-heading text-center'>
-                  <h2><strong><span className='text-default'> Our</span> Services</strong></h2>
+                  <h2><strong><span className='text-success'> Our</span> Advantage</strong></h2>
                 </div>
               </div>
             </div>
@@ -196,7 +136,7 @@ const Home = ({plan}) => {
               <div className='col-md-6 col-lg-4 text-center mb-5'>
                 <div className='site-service-item site-animate'>
               <span className='icon'>
-                    <img width="100px" src={tools} />
+                    <img width="100px" src={tools} alt ="" />
                 </span>
                 
                     <h3 className="mb-4">Trading Tools</h3>
@@ -208,7 +148,7 @@ const Home = ({plan}) => {
               <div className='col-md-6 col-lg-4 text-center mb-5'>
                 <div className='site-service-item site-animate'>
               <span className='icon'>
-                    <img width="100px" src={chart} />
+                    <img width="100px" src={chart}  alt =""/>
                 </span>
                 
                     <h3 class="mb-4">Accounts</h3>
@@ -222,7 +162,7 @@ const Home = ({plan}) => {
                 <div className='col-md-6 col-lg-4 text-center mb-5'>
                 <div className='site-service-item site-animate'>
               <span className='icon'>
-                    <img width="100px" src={piechart} />
+                    <img width="100px" src={piechart} alt ="" />
                 </span>
                 
                     <h3 className="mb-4">Investment Products</h3>
@@ -236,7 +176,7 @@ const Home = ({plan}) => {
               <div className='col-md-6 col-lg-4 text-center mb-5'>
                 <div className='site-service-item site-animate'>
               <span className='icon'>
-                    <img width="100px" src={platform} />
+                    <img width="100px" src={platform} alt =""/>
                 </span>
                   <h3 className="mb-4">Trading Platform</h3>
                   <p className="lead">
@@ -249,7 +189,7 @@ const Home = ({plan}) => {
               <div className='col-md-6 col-lg-4 text-center mb-5'>
                 <div className='site-service-item site-animate'>
               <span className='icon'>
-                    <img width="100px" src={mortar} />
+                    <img width="100px" src={mortar} alt ="" />
                 </span>
                 
                     <h3 className="mb-4">Educational</h3>
@@ -262,7 +202,7 @@ const Home = ({plan}) => {
               <div className='col-md-6 col-lg-4 text-center mb-5'>
                 <div className='site-service-item site-animate'>
               <span className='icon'>
-                    <img width="100px" src={credit} />
+                    <img width="100px" src={credit} alt =""/>
                 </span>
                 
                     <h3 className="mb-4">Free Funding</h3>
@@ -278,47 +218,27 @@ const Home = ({plan}) => {
             </div>
           </div>
         </section>
-        <section className='site-section bg-black pb-0' style={{ marginBottom:20 }}>
+        <section className='site-cont bg-black pb-0' style={{ marginBottom:20 }}>
           <div className='container'>
-            <div className='row mb-4'>
-            <div class="col-lg-6 pr-lg-5 mb-5 mb-lg-0  ">
-                  
-                <div className="mb-3">
-                    <h3 className="text-4xl font-semibold text-white"><span className='text-default'>Profit Calculation</span> of your investment</h3>
-                </div>
-                <div>
-                  <div className="table ">
-                    <tr>
-                      <th><h5> Choice Sectors </h5></th>
-                    </tr>
-                    <tr>
-                      <td><b><h6>Investment</h6></b></td>
-                    </tr>
-                  </div>
-                  <div className="table ">
-                    <tr>
-                      <td><h5 className='btncolor'>Estimated Amount</h5>  </td>
-                    </tr>
-                    <tr >
-                      <td colspan="2"><div className=" col-lg-12 flex items-center rounded-md border border-red-300 bg-gray-100 px-2">
-                        <p className="font-bold text-gray-500">USD</p>
-                        </div></td>
-                    </tr>
-                </div>
-                                 
-                </div>
-              </div>
-              <div className="col-lg-6 pr-lg-5 mb-5 mb-lg-0">
+            <div className='row align-items-center justify-content-center mb-4'>
+         
+              <div className="col-lg-6">
                           
                 <div>
                     <h1 className="text-2xl text-white">Our Investment Plans</h1>
                     <p className="leading-5 mt-2 text-secondary ">Our goal is to maximize investor's return 
                         and maximize any potential loss by applying some principles in a disciplined and pragmatic process.
                          We rely on facts, not speculations to purchase high return, predictable investments at significant discount
-                          on intrinsic values.</p>
+                          on intrinsic values.</p><br/><br/>
+                          <NavLink to="#" onClick={plan} className="btn btn-success">Investment Plan</NavLink>
                 
                 </div>
                 </div>
+                <div className="col-md-6 hidden">
+                
+                <img src={image} alt="" width="600px"/>
+            
+        </div>
 
             </div>
 
@@ -344,7 +264,7 @@ const Home = ({plan}) => {
             </div>
             <div className=" col-md-12 col-lg-3 ">
                 <div className="flex justify-center h-40 py-5 mb-2 border-b ">
-                    <img width="97px" src={spread} />
+                    <img width="97px" src={spread}  alt = ""/>
                 </div>
                 
                     <h4 className="text-gray-600 font-bold"><b>Zero Spread Account</b></h4>
@@ -357,7 +277,7 @@ const Home = ({plan}) => {
             </div>
             <div className=" col-md-12 col-lg-3">
                 <div className="flex justify-center h-40 py-5 mb-2 border-b ">
-                    <img width="87px" src={bonus} />
+                    <img width="87px" src={bonus}  alt = ""/>
                 </div>
                  <h4 className="text-gray-600 font-bold"><b>Bonus Offerings</b></h4>
                  <ul className="list-unstyled ul-check primary">
@@ -370,7 +290,7 @@ const Home = ({plan}) => {
               
             <div class="col-md-6 col-lg-3">
                        <div className="flex justify-center py-5 h-40 mb-2 border-b">
-                    <img width="140px" src={handshake} />
+                    <img width="140px" src={handshake}alt = "" />
                 </div>
                 <h4 className=""><b>Become an Affiliate</b></h4>
              <ul className="list-unstyled ul-check primary">
@@ -397,7 +317,7 @@ const Home = ({plan}) => {
               <div className='col-md-6 col-lg-6 text-center mb-5'>
                 <div className='site-service-item site-animate'>
               <span className='icon'>
-                    <NavLink to="/support"><img width="100px" src={support} /></NavLink>
+                    <NavLink to="/support"><img width="100px" alt = "" src={support} /></NavLink>
                 </span>
                 
                 <h4 className=""><b>24/7 Support</b></h4>
@@ -407,7 +327,7 @@ const Home = ({plan}) => {
               <div className='col-md-6 col-lg-6 text-center mb-5'>
                 <div className='site-service-item site-animate'>
               <span className='icon'>
-              <NavLink to="/community"><img width="100px" src={community} /></NavLink>
+              <NavLink to="/community"><img width="100px"  alt = "" src={community} /></NavLink>
                 </span>
                 
                 <h4 className=""><b>Community</b></h4>

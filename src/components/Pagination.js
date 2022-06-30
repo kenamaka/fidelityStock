@@ -72,15 +72,15 @@ const Pagination = () => {
     return (
       <>
   <nav className="header">
-          <div className="container">
+          <div className="container ">
             
-  <h1 className="site-logo"><NavLink className="text-black h2 mb-0" style={{ fontWeight: 700 }} to="/" onClick={handleHome }><span className="text-default">Fidelity</span>. </NavLink></h1>
+  <h1 className="site-logo"><NavLink className="text-black h2 mb-0" style={{ fontWeight: 700 }} to="/" onClick={handleHome }><span className="text-success">Fidelity</span><span className="text-dark">.</span> </NavLink></h1>
     <ul className={click ? 'navbar active' : 'navbar'}>
              
-            <li className="nav-item"><NavLink className="nav-link" to="/" onClick={handleHome}>Home</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to = "#" onClick={handleAbout}>About Us</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="#" onClick={handleServices}>Services</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="#" onClick={handleInvestment}>Investment Plan</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link text-dark" style={{ fontWeight: 500 }} to="/" onClick={handleHome}>Home</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link text-dark" style={{ fontWeight: 500 }} to = "#" onClick={handleAbout}>About Us</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link text-dark" style={{ fontWeight: 500 }} to="#" onClick={handleServices}>Services</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link text-dark" style={{ fontWeight: 500 }} to="#" onClick={handleInvestment}>Investment Plan</NavLink></li>
             <li className="nav-item"><button className="  btn btn-info px-4 py-2 btn-sm smoothscroll"><NavLink className="btncolor" to="/register">Register</NavLink></button></li> &nbsp; &nbsp;
             <li className="nav-item"><button className="  btn btn-success px-4 py-2 btn-sm smoothscroll"><NavLink className="btncolor" to="/dashboard">Login</NavLink></button></li> &nbsp; &nbsp;
          
@@ -100,7 +100,7 @@ const Pagination = () => {
       
       {/* contents and navigaition go here */}
 
-      {home && <Home/>}
+      {home && <Home plan={handleInvestment}/>}
       {about && <About/>}
       {services && <Services/>}
       {investment && <Investmentplan/>}
@@ -113,7 +113,7 @@ const Pagination = () => {
           <div className="row">
             <div className="col-md-5">
               <h2 className="footer-heading mb-4 text-white">About Us</h2>
-      <p className='text-secondary'> We provides an unparalleled variety of account options
+      <p className='text-secondary'> We provide an unparalleled variety of account options
           that clients can select to enjoy a tailored investment experience that perfectly suits their needs. Coupled with superior trading conditions and
         lightning fast execution.</p>
     </div>

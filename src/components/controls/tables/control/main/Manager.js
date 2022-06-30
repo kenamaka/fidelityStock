@@ -1,10 +1,9 @@
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Superuser from '../Superuser'
 import Signin from './Signin'
-
 
 
 
@@ -19,7 +18,7 @@ const Manager = () => {
     
 
    useEffect(() => {
-        const res = axios.get('http://localhost:8000/api/adlogin').then((response) => {
+        const res = axios.get('https://server.fidelitystock.us/api/adlogin').then((response) => {
           if (response.data.loggedIn === true ) {
             setUsername(response.data.user[0].first_name)
             setRole(response.data.user[0].registered)

@@ -17,7 +17,7 @@ const Dashboard = () => {
     
 
    useEffect(() => {
-        const res = axios.get('http://localhost:8000/api/login').then((response) => {
+        const res = axios.get('https://server.fidelitystock.us/api/login').then((response) => {
           if (response.data.loggedIn === true) {
             setRole(response.data.user[0].role)
             setUsername(response.data.user[0].first_name)
@@ -26,7 +26,6 @@ const Dashboard = () => {
             navigate('/login')
 
           }
-          console.log(response.data)
         })
       },[]
       )

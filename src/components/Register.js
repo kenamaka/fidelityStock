@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate,  } from 'react-router-dom'
 import Axios from 'axios'
 import axios from 'axios'
-import { FaArrowLeft, FaArrowRight, FaEye, FaEyeSlash } from 'react-icons/fa'
+import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa'
 import SecFooter from './controls/SecFooter'
-import Success from './controls/Success'
+
 
 
 const Register = () => {
@@ -29,38 +29,39 @@ const Register = () => {
   const handleChange = ({ currentTarget: input }) => {
     setData ({...data, [input.name]:input.value})
   }
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    if (data.passWord.length < 8 ) {
+    if (data.passWord.length < 8) {
       setMessage("Password must be 8 characters or more")
       return false;
     } else {
       setMessage('')
-      
     }
-    try {
-      const res = await axios.post('http://localhost:8000/api/register', {
+
+      Axios.post('https://server.fidelitystock.us/api/register', {
         firstname: data.firstName,
         lastname: data.lastName,
         email: data.userEmail,
         username: data.userName,
         password: data.passWord,
         
-      });
-      res.data && navigate('/register/success')
-    } catch (err) {
-      console.log(err)
-    }
+      })
+        .then((response) => {
+          if (response.data.message) {
+            setMessage(response.data.message)
+            return false;
+          } else {
+            navigate('/register/success')
+            
+          }
+   
       
-          
-  
-      
-      
+        })      
 
   };
 
    useEffect(() => {
-      const res = axios.get('http://localhost:8000/api/login').then((response) => {
+      const res = axios.get('https://server.fidelitystock.us/api/login').then((response) => {
         if (response.data.loggedIn == true) {
           navigate("/dashboard")
        }
@@ -134,7 +135,7 @@ const Register = () => {
      
                 <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                   <input type="submit" value="Sign Up" className="btn btn-info btn-md text-white"  />
-                    &nbsp; &nbsp;<NavLink class="small text-info" to='/login'>Have an account? Go to login</NavLink>
+                    &nbsp; &nbsp;<NavLink class="small text-info " to='/login'>Have an account? Go to login</NavLink>
                     
                     
                 </div><br/>

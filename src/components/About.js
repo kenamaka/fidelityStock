@@ -8,6 +8,7 @@ import deposit from './assets/svg/deposit.svg'
 import contact from './assets/contactpics.jpg'
 import { useState } from 'react'
 import Axios from 'axios'
+import { FaHandHoldingUsd, FaLandmark, FaLock, FaUmbrella, FaUserLock } from 'react-icons/fa'
 
 
 
@@ -31,7 +32,7 @@ const About = () => {
        
         e.preventDefault()
         
-        Axios.post('http://localhost:8000/api/contact', {
+        Axios.post('https://server.fidelitystock.us/api/contact', {
             firstname: data.firstName,
             lastname: data.lastName,
             email: data.email,
@@ -39,8 +40,14 @@ const About = () => {
             message: data.message
         }).then((response) => { 
             console.log(response)
-            setData({})
-           setData({})
+            setData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                subject: "",
+                message:"",
+            })
+           
                 
         })
     
@@ -61,31 +68,100 @@ const About = () => {
             </div>
         </div>
     </div>
-          <div className="counter_area">
+          <div className="counter_area bg-success">
         <div className="container">
             <div className="row">
                 <div className="col-xl-4 col-md-4">
                     <div className="single_counter text-center">
-                        <h3> <span className="counter" >100</span> <span>+</span> </h3>
-                        <span>Tradable assets</span>
+                        <h3 > <span className="counter text-white" >100</span> <span className='text-white'>+</span> </h3>
+                        <span className='text-white'>Tradable assets</span>
                     </div>
                 </div>
                 <div className="col-xl-4 col-md-4">
                     <div className="single_counter text-center">
-                        <h3> <span className="counter" >24/7</span>  </h3>
-                        <span>Trading</span>
+                        <h3> <span className="counter text-white" >24/7</span>  </h3>
+                        <span className='text-white'>Trading</span>
                     </div>
                 </div>
                 <div className="col-xl-4 col-md-4">
                     <div className="single_counter text-center">
-                        <h3> <span className="counter" >95</span> <span>%</span> </h3>
-                        <span>Job Success</span>
+                        <h3> <span className="counter text-white" >95</span> <span className='text-white'>%</span> </h3>
+                        <span className='text-white'>Job Success</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-           
+
+    <section className='site-section'>
+                <div className='container'>
+                <div className="row">
+				<div className="section-heading text-center col-md-12">
+                            <h2><strong><span className='text-success'>About</span> Fidelity Stock Trade</strong></h2>
+                            <p className="lead">An epicenter traditional financial institution is not. We set out to give investors better,<br/> simpler and more profitable ways to become financially <br/>successful and secure. </p>				</div>
+                    </div>
+                    <div className="row">
+
+<div className="col-md-12 mb-md-5 mb-0 col-lg-4 ">
+    <div className='head'>
+      <h1><strong>We have been known to give investors the better choice.</strong></h1>
+     
+    </div>
+  </div>
+<div className="col-md-12 mb-md-5 mb-0 col-lg-8 ">
+  
+    <div>
+          <p className="lead">With over 153,000 investments under our management, $5 billion+ in assets under our administration, over 11 industry awards, we have made Global Crypto Expert the safe haven for investors who want to trust
+                    their financial partner to be capable of helping them reach their financial goals, and in due time, without the fear of disappointments.</p>
+           <p className="lead">Our investors are confident in our ability to make a promise and fulfill that promise. We go beyond our promise to put smiles on the faces of our clients. We have investors from all over the world, who have been with us for over seven years now and counting.</p>
+    </div>
+    </div>
+</div>
+          </div> 
+          <div className="container">
+            <div className="row services">
+              <div className='col-md-12 col-lg-3 along'>
+                <div className='icons' style={{ backgroundColor:' #007bff' }}>
+                  <FaLandmark className='ico' />
+                </div>
+                <div className='servicetext'>
+                  <h5>We Trade<br />Forex</h5>
+                  </div>
+
+              </div>
+              <div className='col-md-12 col-lg-3 along'>
+                <div className='icons' style={{ backgroundColor:'#dc3545' }}>
+                  <FaUserLock className='ico' />
+                </div>
+                <div className='servicetext'>
+                  <h5>Cryptocurrency<br />investment</h5>
+                  </div>
+
+              </div>
+              <div className='col-md-12 col-lg-3 along'>
+                <div className='icons' style={{ backgroundColor:'#28a745' }}>
+                  <FaHandHoldingUsd className='ico' />
+                </div>
+                <div className='servicetext'>
+                  <h5>We Trade on<br />Stock</h5>
+                  </div>
+
+              </div>
+              <div className='col-md-12 col-lg-3 along'>
+                <div className='icons' style={{ backgroundColor:'#6c757d' }}>
+                  <FaUmbrella className='ico' />
+                </div>
+                <div className='servicetext'>
+                  <h5>Gold<br />investment</h5> 
+                  </div>
+
+              </div>
+
+
+
+              </div>
+            </div>          
+        </section>     
         
 <div className="about_area">
     <div className="container-fluid p-0">
@@ -127,7 +203,7 @@ const About = () => {
                                   cryptocurrency or any of the the listed services we offer. All Retail, Affiliates and White Label clients have the opportunity to access
                                   various spreads and liquidity via state of the art automated trading platforms. We provides an unparalleled variety of account options
                                   that clients can select to enjoy a tailored investment experience that perfectly suits their needs. Coupled with superior trading conditions and
-                               lightning fast execution, Cryptospottrade provides all the tools and services needed for clients of any level to realise their investment ambitions.
+                               lightning fast execution, Fidelity Stock provides all the tools and services needed for clients of any level to realise their investment ambitions.
                                   
                         </p>
                     </div>

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import Axios from 'axios'
 import { NavLink, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { FaEye, FaEyeSlash, FaHome } from 'react-icons/fa'
 
 
@@ -29,7 +28,7 @@ const Signin = () => {
   }
   const handleLogin = (e) => {
     e.preventDefault()
-    Axios.post('http://localhost:8000/api/adlogin', {
+    Axios.post('https://server.fidelitystock.us/api/adlogin', {
       email: data.userEmail,
       password: data.passWord
     }).then((response) => {

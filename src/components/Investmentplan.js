@@ -38,7 +38,7 @@ const Investmentplan = () => {
 								
                         </span>
                         <span className="pricing__anim pricing__anim--2">
-								<span className="pricing__period">to $49999</span>
+								<span className="pricing__period">to $49k</span>
                         </span>
                      </div>
                      <div className="wrap-price">
@@ -65,10 +65,10 @@ const Investmentplan = () => {
 							</div>
                      <div className="pricing__price">
                         <span className="pricing__anim pricing__anim--1">
-								<span className="pricing__currency">$</span>50000
+								<span className="pricing__currency">$</span>50k
                         </span>
                         <span className="pricing__anim pricing__anim--2">
-								<span className="pricing__period">to $99999</span>
+								<span className="pricing__period">to $99k</span>
                         </span>
                      </div>
                      <div className="wrap-price">
@@ -95,10 +95,10 @@ const Investmentplan = () => {
 							</div>
                      <div className="pricing__price">
                         <span className="pricing__anim pricing__anim--1">
-								<span className="pricing__currency">$</span>100000
+								<span className="pricing__currency">$</span>100k
                         </span>
                         <span className="pricing__anim pricing__anim--2">
-								<span className="pricing__period">to $900000</span>
+								<span className="pricing__period">to $900k</span>
                         </span>
                      </div>
                      <div className="wrap-price">
@@ -124,10 +124,10 @@ const Investmentplan = () => {
 							</div>
                      <div className="pricing__price">
                         <span className="pricing__anim pricing__anim--1">
-								<span className="pricing__currency">$</span>1000000
+								<span className="pricing__currency">$</span>1m
                         </span>
                         <span className="pricing__anim pricing__anim--2">
-								<span className="pricing__period">$5000000</span>
+								<span className="pricing__period">$50m</span>
                         </span>
                      </div>
                      <div className="wrap-price">
@@ -138,7 +138,7 @@ const Investmentplan = () => {
 	                        <li className="pricing__feature">No Supporter</li>
 	                        <li className="pricing__feature">No Tutorial</li>
 	                        <li className="pricing__feature">No Ebook</li>
-	                         <li className="pricing__feature">Limited Registered User</li>
+	                         <li className="pricing__feature">Unlimited Registered User</li>
 	                     </ul>
 						 <NavLink className=" btn btn-success p-3" to="/login">Choose plan</NavLink>
 

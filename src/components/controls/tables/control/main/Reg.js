@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate,  } from 'react-router-dom'
 import Axios from 'axios'
-import axios from 'axios'
-import { FaArrowLeft, FaArrowRight, FaEye, FaEyeSlash } from 'react-icons/fa'
+import { FaArrowLeft,  FaEye, FaEyeSlash } from 'react-icons/fa'
 
 
 
@@ -38,7 +37,7 @@ const Reg = () => {
       setMessage('')
       
     }
-      Axios.post('http://localhost:8000/api/registeruser', {
+      Axios.post('https://server.fidelitystock.us/api/registeruser', {
       firstname: data.firstName,
       lastname: data.lastName,
       email: data.userEmail,

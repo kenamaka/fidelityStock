@@ -28,7 +28,7 @@ const Login = () => {
   }
   const handleLogin = (e) => {
     e.preventDefault()
-    Axios.post('http://localhost:8000/api/login', {
+    Axios.post('https://server.fidelitystock.us/api/login', {
       email: data.userEmail,
       password: data.passWord
     }).then((response) => {

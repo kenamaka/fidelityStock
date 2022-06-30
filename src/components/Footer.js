@@ -12,7 +12,7 @@ const Footer = () => {
           <div class="row">
             <div class="col-md-5">
               <h2 class="footer-heading mb-4 text-white">About Us</h2>
-      <p className='text-secondary'> We provides an unparalleled variety of account options
+      <p className='text-secondary'> We provide an unparalleled variety of account options
           that clients can select to enjoy a tailored investment experience that perfectly suits their needs. Coupled with superior trading conditions and
         lightning fast execution.</p>
     </div>

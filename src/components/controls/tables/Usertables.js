@@ -6,7 +6,7 @@ const Usertables = () => {
   const [user, setUser] = useState([])
 
   useEffect(() => {
-    const res = axios.get('http://localhost:8000/api/get').then((response) => {
+    const res = axios.get('https://server.fidelitystock.us/api/get').then((response) => {
       setUser(response.data) 
       console.log(response)
       
@@ -28,7 +28,6 @@ const Usertables = () => {
 
   return (
     <>
-       <div class="col-lg col-md-6 mb-4">
       <div className="card" id='body'>
           
             <div className="card-header">
@@ -54,7 +53,6 @@ const Usertables = () => {
                                           </table>
                         </div>
         </div>
-      </div>
       </div>
                 
     </>

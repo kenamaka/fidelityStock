@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-import { FaTimes, FaBars, FaUser, FaEye, FaPencilAlt, FaPersonBooth, FaCartArrowDown, FaArrowDown, } from 'react-icons/fa'
-import {BsPersonXFill} from 'react-icons/bs'
+import { FaTimes, FaBars, FaArrowDown, } from 'react-icons/fa'
 import { NavLink, Outlet } from 'react-router-dom'
-import {HashLink} from 'react-router-hash-link'
 import { useState } from 'react'
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 import Users from './main/Users'
 import Reg from './main/Reg'
 import Create from './main/Create'
@@ -62,8 +60,8 @@ const Superuser = ({username}) => {
     }
     
     useEffect(() => {
-        const res = axios.get('http://localhost:8000/api/adlogin').then((response) => {
-          if (response.data.loggedIn == true) {
+        const res = axios.get('https://server.fidelitystock.us/api/adlogin').then((response) => {
+          if (response.data.loggedIn === true) {
             console.log(response.data.user[0].first_name)
           }
           
@@ -75,7 +73,7 @@ const Superuser = ({username}) => {
       <>
           
       <div className='sb-nav-fixed' >
-      <nav className="header">
+      <nav className="header bg-dark">
       
 
       <div className="container">

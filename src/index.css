@@ -2446,6 +2446,9 @@ fieldset:disabled a.btn {
   line-height: 1.5;
   border-radius: 0.2rem; }
 
+  .btn-blue{
+    background-color: #021b4b!important;
+  }
 .btn-block {
   display: block;
   width: 100%; }
@@ -3306,7 +3309,10 @@ input[type="button"].btn-block {
 .tab-content > .active {
   display: block; }
 
+.text-blue{
+  color:  #002b80!important;
 
+}
 
 .card {
   position: relative;
@@ -3322,7 +3328,10 @@ input[type="button"].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem; }
+  border-radius: 0.9rem; 
+  
+}
+
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
@@ -3545,8 +3554,9 @@ input[type="button"].btn-block {
   .breadcrumb-item + .breadcrumb-item::before {
     display: inline-block;
     padding-right: 0.5rem;
-    color: #6c757d;
-    content: "/"; }
+    color: #f8f9fa ;
+    content: "/"; 
+  }
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
   text-decoration: underline; }
@@ -4685,6 +4695,11 @@ button.close {
   background-color: #000 !important;
 }
 
+.bg-gray {
+  background-color: #f0f5f5 !important;
+}
+
+
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
@@ -4731,7 +4746,7 @@ button.bg-danger:focus {
   background-color: #bd2130 !important; }
 
 .bg-light {
-  background-color: #f8f9fa !important; 
+  background-color: #6c757d  !important; 
 
 }
 

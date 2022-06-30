@@ -5,7 +5,7 @@ const ActiveUsers = () => {
   return (
       <>
            
-           <div class="col-lg col-md-6 mb-4">
+           
       <div className="card" id='body'>
                     <div className="card-header">
                     Active Users
@@ -38,7 +38,7 @@ const ActiveUsers = () => {
                                           </table>
                         </div>
                     </div>
-                    </div></div>
+                    </div>
                 
       </>
   )

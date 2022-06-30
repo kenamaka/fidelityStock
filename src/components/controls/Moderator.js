@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { FaTimes, FaBars, FaUser, FaEye, FaPencilAlt, FaPersonBooth, } from 'react-icons/fa'
 import {BsPersonXFill} from 'react-icons/bs'
-import './css/styles.css'
 import { NavLink, Outlet } from 'react-router-dom'
 import {HashLink} from 'react-router-hash-link'
 import { useState } from 'react'
@@ -30,18 +29,22 @@ const Moderator = ({username}) => {
     const handleRegusers = () => {
         setActiveuser(false)
         setContact(false)
-        setReguser(true)
+      setReguser(true)
+      setClick(false)
 
     }
     const handleActive = () => {
         setActiveuser(true)
         setReguser(false)
         setContact(false)
+        setClick(false)
 
     }
  
     const handleContact = () => {
         setActiveuser(false)
+
+        setClick(false)
         setReguser(false)
         setContact(true)
     }
@@ -50,7 +53,7 @@ const Moderator = ({username}) => {
   return (
     <>
       <div className='sb-nav-fixed' >
-      <nav className="header">
+      <nav className="header bg-dark">
       
 
       <div className="container">
@@ -59,6 +62,9 @@ const Moderator = ({username}) => {
           <h1 className="site-logo"><NavLink  className="text-black h2 mb-0" style={{ fontWeight: 700 }} to ="/dashboard"><span className="text-default">Admin</span>Panel </NavLink></h1>
                       <ul className={click ? 'navbar active' : 'navbar'}>
                   <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link" to="#" onClick={handleRegusers} >Registered Users</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link" to="#" onClick ={handleActive}>Active Users</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link" to="#" onClick={handleContact}>Messages</NavLink></li>
                   <li className="nav-item"> <span className="nav-link">Welcome <span className="text-info "><b>{ username }</b></span></span></li>
          
                 
@@ -90,7 +96,7 @@ const Moderator = ({username}) => {
                           <br/>
 
   </div>
-               
+  <div class="col-lg-9 col-md-6 mb-4">       
                           {/* pages come here */}
                           <>
                         
@@ -101,7 +107,7 @@ const Moderator = ({username}) => {
                           
                   </div>
                   </div>
-        
+        </div>
         <footer className="py-4 bg-dark mt-auto">
             <div className="container-fluid">
                 <div className="d-flex align-items-center justify-content-between small">

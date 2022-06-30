@@ -53,12 +53,12 @@ a {
 .header {
 width: 100%;
 position: fixed;
-background-color: #080b0e;
+background-color: #ffffff;
 opacity: 0.9;
 top: 0;
 left  : 0;
 z-index: 10;
-border-bottom: 1px solid #2c3e50;
+border-bottom: 1px solid #dcdcdd;
 }
 .header .container {
   display: flex;
@@ -107,8 +107,8 @@ border-bottom: 1px solid #2c3e50;
   height: 100vh;
   transition: 0.4s;
   z-index: 2;
-  background:#080b0e;
-  border-left: 1px solid #2c3e50;
+  background:#d7d6d6;
+  border-left: 1px solid #fffefe;
 }
 .navbar.active {
   right: 0;
@@ -124,7 +124,7 @@ border-bottom: 1px solid #2c3e50;
 /* head section */
 
 .site-hero {
-  background-color: #ccc;
+  background-color: rgb(224, 224, 224);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -134,7 +134,7 @@ background-attachment: fixed;
 }
   .site-hero, .site-hero .row {
     height: 100vh;
-    min-height: 400px; }
+    min-height: 200px; }
   .site-hero:before {
     content: "";
     position: absolute;
@@ -143,7 +143,7 @@ background-attachment: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); }
+    }
   .site-hero h1 {
     font-weight: 200;
     margin-bottom: 20px;
@@ -164,6 +164,45 @@ background-attachment: fixed;
   }
 
   
+.site-cont {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+background-attachment: fixed; 
+  
+}
+  .site-cont, .site-hero .row {
+    height: 80vh;
+    min-height: 200px; }
+  .site-cont:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    }
+  .site-cont h1 {
+     display: block; 
+  }
+    .site-cont h1 strong {
+      font-weight: 800; 
+    }
+    @media (min-width: 768px) {
+      .site-cont h1 {
+        font-size: 70px; } 
+      }
+    
+  .site-cont h1, .site-cont .lead {
+    font-weight: 200;
+    color:#fff; }
+  .site-cont .lead {
+    line-height: 2; 
+    color: #080b0e;
+  }
+  
     .site-section 
     .lead{
       font-size: 1.1rem;
@@ -173,6 +212,7 @@ background-attachment: fixed;
     max-width: 640px;
     margin: 0 auto;
     color: rgba(255, 255, 255, 0.5); }
+
 
 .site-section {
   padding: 5em 0; }
@@ -184,7 +224,7 @@ background-attachment: fixed;
   z-index:1; 
 }
  .head {
-   border-bottom: 8px solid var(--primary);
+   border-bottom: 8px solid var(--success);
    
 }
 .head h1 {
@@ -412,7 +452,6 @@ img:hover {
         content: "\ebd3"; }
 
 .btn {
-  border-radius: 100px;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: .2rem; }
@@ -1063,7 +1102,7 @@ img:hover {
   
 
   .line {
-    border: 5px solid var(--primary);
+    border: 5px solid var(--success);
     width: 90px;
     border-radius: 50px;
   }
@@ -1693,10 +1732,95 @@ ul.address {
 
 
 
+.right{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.api {
+  display:  flex;
+flex-direction: column;
+padding: 12px 22px;
+margin-top: .4rem;
+width: 170px;
+height: 170px;
+border-radius: 24px;
+border:1px solid #d3d3d3;
+box-shadow: rgb(0 0 0 / 12%) 0px 8px 24px;
+text-align: center;
+
+}
+
+.api .top{
+  display: flex;
+  flex-direction: column;
+}
+
+.right img {
+  width: 50px;
+  margin: auto;
+  padding: .2rem 0;
+}
+
+.hidden{
+  display: flex;
+}
 
 
+.drop {
+    display: flex;
+    cursor: pointer;
+  }
+  .navb{
+    position: absolute;
+    flex-direction: column;
+    justify-content: start;
+    top:47px;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    transition: 0.4s;
+    z-index: 2;
+    background:#020a20;
+    border-left: 1px solid #fffefe;
+  }
+  .navb.active {
+    right: 0;
+  }
 
 
+.navb .inactive{
+  right:-100% ;
+}
 
+.dash-info{
+  font-size: 100% !important;
+}
 
+@media screen and (max-width:1200px) {
+  .hidden{
+    display: none;
+  }
+  .dash-info{
+    font-size: 70%;
+  }
+ 
+}
 
+.icon{
+	position:absolute;
+	top:0;
+	right:-0px;
+	height:60px;
+	width:50px;
+	display:flex;
+  
+	}
+
+  .bottom{
+    padding-top: 60px;
+  }
+
+  .wallet {
+    min-height: 190px;
+  }
