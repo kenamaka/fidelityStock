@@ -10,6 +10,7 @@ import security from './assets/svg/security.svg'
 import service from './assets/service.png'
 
 import { FaTeam, FaCpanel, FaProfit  } from 'react-icons/fa'
+import { AnimationOnScroll } from 'react-animation-on-scroll'
 
 
 
@@ -23,6 +24,7 @@ const Services = () => {
 
       <div class="overlay">
         <div class="container-fluid text-center">
+        <AnimationOnScroll animateIn='animate__bounceInUp' duration={2}  >
 
       <div class="row mr-0 ml-0 d-flex justify-content-center">
                 <div class="col-xl-8 col-lg-12">
@@ -33,8 +35,11 @@ const Services = () => {
                                       As per your requirement and you can trade  from anywhere either from homes, work place or coffee shop at any time.</p>
                     </div>
                 </div>
-                      </div>
+                          </div>
+                          </AnimationOnScroll>
                       <div className='container'>
+                      <AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
+
                    
         <div class="row">
 
@@ -105,7 +110,7 @@ const Services = () => {
             <img src={daily} alt="#" />
         </div>
         <div class="text-box">
-            <h2 class="single-item-title">Daily Income</h2>
+            <h2 class="single-item-title">Referal Income</h2>
          
         </div>
     </div>
@@ -146,12 +151,16 @@ const Services = () => {
         </div>
     </div>
           </div>
-                          </div>
-                          </div>
-          </div>
+                              </div>
+                              </AnimationOnScroll>
+                      </div>
+                      
+                  </div>
+    
           </div>
        </section>
 
+       <AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
 
        <section class="advantage-section" style={{ background:`url(${background})` }}>
     <div class="overlay">
@@ -199,17 +208,19 @@ const Services = () => {
             </div>
         </div>
     </div>
-          </section>
+              </section>
+              </AnimationOnScroll>
 
 
+              <AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
 
-          <section className="site-section" >
+          <section className="site-section bg-white" >
 		<div className="container ">
 			<div className="row mb-5 align-items-center">
 			
 				<div className="col-lg-5">
 					<div className="section-heading">
-						<h2><strong>INVESTMENT OFFER</strong></h2>
+						<h2 className='text-success'><strong>INVESTMENT OFFER</strong></h2>
 						<h3><strong>Our Investment Benefits</strong></h3>
 					</div>
                           <p className="lead">Fidelity Stock provides a straightforward and transparent mechanism to attract investments and make more profits on a daily basis.</p>
@@ -224,7 +235,8 @@ const Services = () => {
 
 
 		</div>
-        </section>
+              </section>
+              </AnimationOnScroll>
 
  
     </>

@@ -5,6 +5,9 @@ import User from './User'
 import Moderator from './Moderator'
 import Login from '../Login'
 import { useNavigate } from 'react-router-dom'
+import "animate.css/animate.min.css"
+import Pagination from '../Pagination'
+
 
 
 
@@ -23,7 +26,7 @@ const Dashboard = () => {
             setUsername(response.data.user[0].first_name)
           }
           else if (response.data.loggedIn === false) {
-            navigate('/login')
+            navigate('/')
 
           }
         })
@@ -35,7 +38,7 @@ const Dashboard = () => {
       
       {role === "User" && <User username={username} />}
       {role === "Moderator" && <Moderator username={ username }/>}
-      {role === "" && <Login />}
+      {role === "" && <Pagination />}
     </>
   )
 }

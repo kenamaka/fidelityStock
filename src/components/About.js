@@ -1,5 +1,5 @@
 import React from 'react'
-import about from './assets/about2.jpg'
+import head from './assets/about2.jpg'
 import aboutus from './assets/aboutus.jpg'
 import bginvest from './assets/invest-bg.jpg'
 import signup from './assets/svg/sign-up.svg'
@@ -9,10 +9,11 @@ import contact from './assets/contactpics.jpg'
 import { useState } from 'react'
 import Axios from 'axios'
 import { FaHandHoldingUsd, FaLandmark, FaLock, FaUmbrella, FaUserLock } from 'react-icons/fa'
+import { AnimationOnScroll } from 'react-animation-on-scroll'
 
 
 
-const About = () => {
+const About = ({about}) => {
 
 
     const [data, setData] = useState({
@@ -28,11 +29,9 @@ const About = () => {
         setData ({...data, [input.name]:input.value})
     }
     
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
        
-        e.preventDefault()
-        
-        Axios.post('https://server.fidelitystock.us/api/contact', {
+            Axios.post('https://server.fidelitystock.us/api/contact', {
             firstname: data.firstName,
             lastname: data.lastName,
             email: data.email,
@@ -52,12 +51,14 @@ const About = () => {
         })
     
     }
+  
 
     
   return (
     <>
+    <AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
       
-      <div className="brand_area  " style={{ backgroundImage:`url(${about})` }}>
+      <div className="brand_area  " style={{ backgroundImage:`url(${head})` }}>
         <div className="container">
             <div class="row">
                 <div className="col-xl-12">
@@ -67,7 +68,10 @@ const About = () => {
                 </div>
             </div>
         </div>
-    </div>
+              </div>
+    </AnimationOnScroll>
+              
+          <AnimationOnScroll animateIn='animate__bounceInUp' duration={2}>
           <div className="counter_area bg-success">
         <div className="container">
             <div className="row">
@@ -92,14 +96,20 @@ const About = () => {
             </div>
         </div>
     </div>
+    </AnimationOnScroll>
 
     <section className='site-section'>
-                <div className='container'>
-                <div className="row">
+              <div className='container'>
+    <AnimationOnScroll animateIn='animate__bounceInRight' duration={2}>
+                  
+                  <div className="row">
+                      
 				<div className="section-heading text-center col-md-12">
                             <h2><strong><span className='text-success'>About</span> Fidelity Stock Trade</strong></h2>
                             <p className="lead">An epicenter traditional financial institution is not. We set out to give investors better,<br/> simpler and more profitable ways to become financially <br/>successful and secure. </p>				</div>
-                    </div>
+                      </div>
+                      </AnimationOnScroll>
+                  
                     <div className="row">
 
 <div className="col-md-12 mb-md-5 mb-0 col-lg-4 ">
@@ -109,16 +119,20 @@ const About = () => {
     </div>
   </div>
 <div className="col-md-12 mb-md-5 mb-0 col-lg-8 ">
+<AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
   
     <div>
           <p className="lead">With over 153,000 investments under our management, $5 billion+ in assets under our administration, over 11 industry awards, we have made Global Crypto Expert the safe haven for investors who want to trust
                     their financial partner to be capable of helping them reach their financial goals, and in due time, without the fear of disappointments.</p>
            <p className="lead">Our investors are confident in our ability to make a promise and fulfill that promise. We go beyond our promise to put smiles on the faces of our clients. We have investors from all over the world, who have been with us for over seven years now and counting.</p>
-    </div>
+                              </div>
+                              </AnimationOnScroll>
     </div>
 </div>
           </div> 
-          <div className="container">
+              <div className="container">
+    <AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
+                  
             <div className="row services">
               <div className='col-md-12 col-lg-3 along'>
                 <div className='icons' style={{ backgroundColor:' #007bff' }}>
@@ -159,24 +173,30 @@ const About = () => {
 
 
 
-              </div>
+                      </div>
+                      </AnimationOnScroll>
             </div>          
         </section>     
         
 <div className="about_area">
-    <div className="container-fluid p-0">
-        <div className="row no-gutters align-items-center">
+              <div className="container-fluid p-0">
+    <AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
+                  
+                  <div className="row no-gutters align-items-center">
+                    
+                      
             <div className="col-xl-6 col-lg-6">
                 <div className="about_image">
                     <img src={aboutus} alt="" />
                 </div>
-            </div>
+                          </div>
+                          
             <div className="col-xl-6 col-lg-6">
                 <div className="about_info">
                     <h3>The Largest Trading Platform</h3>
                               <p>Fidelity Stock Trade is an award winning company fully functional with investment services ranging from cryptocurrency investments,
                                   stock investment and real estate investment.
-                                  We provide acquisiion, development and finance expertise for both commercial and individual investors.
+                                  We provide acquisition, development and finance expertise for both commercial and individual investors.
                                   Our experience in structuring complicated financial transactions while accommodating diverse partnership interest,
                                 has allowed it to achieve a sustainable acquisitions in finance.</p>
                
@@ -185,10 +205,12 @@ const About = () => {
                       
             </div>
         
-        </div>
+                      </div>
+        </AnimationOnScroll>              
     </div>
 </div>
 
+<AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
 
         <div className="container">
             <div className="row">
@@ -209,8 +231,10 @@ const About = () => {
                     </div>
                 </div>
             </div>
-          </div>
+              </div>
+              </AnimationOnScroll>
                
+              <AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
     
 
           <section class="invest-section" style={{ background:`url(${bginvest})` }}>
@@ -281,8 +305,11 @@ const About = () => {
             </div>
         </div>
     </div>
-          </section>
-          
+              </section>
+              </AnimationOnScroll>
+
+    <AnimationOnScroll animateIn='animate__fadeIn' duration={3} animateOut='animate_fadeOut' >
+
  <section id="contact">
     <div id='contact-us' className='parallax' style={{ backgroundImage: `url(${contact})` }}>
       <div className="container">
@@ -328,7 +355,7 @@ const About = () => {
               
             <div className=" form-group">
                 
-                  <input type="submit" value="Submit" className="btn btn-success  btn-md text-white" />
+                  <input type="submit" value="Submit" className="btn btn-success   btn-md text-white" onClick={about} />
                 </div>
               
         </form>
@@ -339,8 +366,7 @@ const About = () => {
                                           We are committed to pushing the boundaries of what constitutes the highest standards in Forex and Binary options trade.
                                           We put people before profit and are 100% committed to improving the lives of those we work with.</p>
             <ul class="address">
-              <li><i class="fa fa-map-marker"></i> <span> Address:</span> 2400 South Avenue A </li>
-              <li><i class="fa fa-phone"></i> <span> Phone:</span> +928 336 2000  </li>
+              <li><i class="fa fa-map-marker"></i> <span> Address:</span> 200 Seaport Blvd, Boston, MA, 0210, USA.</li>
               <li><i class="fa fa-envelope"></i> <span> Email:</span><a href="mailto:someone@yoursite.com"> support@fidelitystock.com</a></li>
               <li><i class="fa fa-globe"></i> <span> Website:</span> <a href="#">www.fidelity.us</a></li>
             </ul>
@@ -352,7 +378,8 @@ const About = () => {
                           </div>
                       </div>
       </div>
-        </section>
+              </section>
+              </AnimationOnScroll>
     
     </>
   )

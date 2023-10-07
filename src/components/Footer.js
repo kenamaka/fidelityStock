@@ -45,7 +45,7 @@ const Footer = () => {
           <div class="credit pt-5">
           <p className='text-secondary'>
           
-          Copyright &copy;2022 All rights reserved 
+          Copyright &copy;{new Date().getUTCFullYear()} All rights reserved 
          
           </p>
           </div>

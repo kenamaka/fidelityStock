@@ -133,7 +133,6 @@ const Reg = () => {
     <select className="form-control" name='role' value={data.role} onChange={handleChange}>
       <option>User</option>
       <option>Moderator</option>
-      <option>Admin</option>
       
                         </select>
                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">

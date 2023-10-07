@@ -28,7 +28,7 @@ const Featured = () => {
                 <div className='container'>
                 <div className="row">
 				<div className="section-heading text-center col-md-12">
-                    <h2><strong><span className='text-success'>Trending</span>. </strong></h2>
+                    <h2 className='text-black'><strong>Trending<span className='text-success'>.</span> </strong></h2>
                           <h5 >Most Popular Cryptocurrencies. </h5>
                       </div>
                     </div>
@@ -38,7 +38,7 @@ const Featured = () => {
 
             <div className='col-md-5'>
                       <div className="section-heading">
-                    <h2><strong><span className='text-success'>Join the community of endless possibilities</span>. </strong></h2>
+                    <h2><strong>Join the community of endless possibilities<span className='text-success'>.</span> </strong></h2>
                               <p className="lead">
                                   We Can Help You Become A Consistently Profitable
                                   Trader. Or if you are just starting out on your journey? We can help you become an expert. You are just a step away. 

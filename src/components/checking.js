@@ -246,3 +246,101 @@ const Fund = () => {
 }
 
 export default Fund
+
+{/* bottom code */ }
+
+    
+setInterval(function () {
+            var prof=0;
+            var sum=0;
+            for (let i = 1; i < profits.length; i++) {
+               prof = Number(profits[i]).toFixed(11);
+               var str = document.getElementById("serversTable").rows[i].cells[1].innerHTML;
+               var subStr = str.substring(str.length - 17, str.length);
+               var result0=parseFloat(subStr).toFixed(11);
+               result0= +result0 + +prof; //add two value
+               document.getElementById("serversTable").rows[i].cells[1].innerHTML='<img src="../assets/img/profit.png" height="50" width="50"> <p style="display: inline;"> '+Number(result0).toFixed(10)+'</p>';
+               sum = +Number(sum).toFixed(10) + +Number(result0).toFixed(10);
+            }
+            document.getElementById("totalMined").innerHTML=Number(sum).toFixed(9)+" BTC";
+            var balance= +Number(sum).toFixed(9) + +Number(pureBalance).toFixed(9);
+            document.getElementById("header_id").innerHTML= Number(balance).toFixed(9)+'<a href="deposit"><i class="fa fa-plus" aria-hidden="true"></i></a>';
+            document.getElementById("balanceUnderTable").innerHTML= Number(balance).toFixed(9)+" BTC";
+        }, 1000);
+
+      
+        (function (b, i, t, C, O, I, N) {
+            window.addEventListener('load', function () {
+                if (b.getElementById(C))
+                    return;
+                I = b.createElement(i), N = b.getElementsByTagName(i)[0];
+                I.src = t;
+                I.id = C;
+                N.parentNode.insertBefore(I, N);
+            }, false)
+        })(document, 'script', 'https://widgets.bitcoin.com/widget.js', 'btcwdgt');
+
+
+var sec=23819; //count down in second
+        var countDownDate = new Date().getTime()+(sec*1000);
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+        
+        // Get todays date and time
+        var now = new Date().getTime();
+     
+        // Find the distance between now an the count down date
+        var distance = countDownDate - now;
+        
+      
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Output the result in an element with id="demo"
+        
+        if (document.getElementById("countdown")) {
+        if(days>0){days_str=" days and ";}else{days_str="";}
+        document.getElementById("countdown").innerHTML = +days + days_str + hours + ":"+ minutes + ":" + seconds + " ";
+        }
+        // If the count down is over, write some text 
+        if (distance < 0 ) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "EXPIRED";
+        }
+        }, 1000);
+
+           ///////////////////////////////////////////auto refresh balance
+//            setInterval(function(){$('#header_id').load(document.URL +  ' #header_id');}, 180*1000); // this will refresh balance  every x seconds
+            ///////////////////////////////////////////
+
+        
+{/* top code */ }
+  
+///////////////////////////////////////////auto refresh balance and profit
+function refresh_id(id, time) {
+  setInterval(function () {
+      $('#' + id).load(document.URL + ' #' + id);
+  }, time * 1000); // this will refresh balance  every (time) seconds
+}
+///////////////////////////////////////////
+///////////////////////////
+function countdown(x, id) {
+  var countDownDate = x * 1000;
+  var x = setInterval(function () {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById(id).innerHTML = days + "d " + hours + "h "
+              + minutes + "m " + seconds + "s ";
+      if (distance < 0) {
+          clearInterval(x);
+          document.getElementById(id).innerHTML = "EXPIRED";
+      }
+  }, 1000);
+}
+

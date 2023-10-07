@@ -1,14 +1,14 @@
 import React from 'react'
 import { FaHome } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
-import SecFooter from './SecFooter'
+import SecFooter from './controls/SecFooter'
 
-function Success({message}) {
+function Success({message,login,home}) {
   return (
       <>
           
 
-        <div id="layoutAuthentication">
+        <div id="layoutAuthentication"> <br/><br/><br/><br/>
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
@@ -22,12 +22,12 @@ function Success({message}) {
                                            
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                
-                                            <button className="btn btn-info px-4 py-2 btn-sm smoothscroll"><NavLink to="/login" className='btncolor'>Login</NavLink> </button>
+                                            <button className="btn btn-info px-4 py-2 btn-sm smoothscroll"><NavLink to="#" onClick={login} className='btncolor'>Login</NavLink> </button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><NavLink to="/"> Back to  <FaHome size="20"/></NavLink></div>
+                                        <div class="small"><NavLink to="#" onClick={home}> Back to  <FaHome size="20"/></NavLink></div>
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@ function Success({message}) {
                     </div>
                 </main>
               </div>
-              <SecFooter/>
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
         
       </>

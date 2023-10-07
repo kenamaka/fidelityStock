@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation,  } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate,  } from 'react-router-dom'
 import Axios from 'axios'
 import axios from 'axios'
 import { FaArrowLeft } from 'react-icons/fa'
@@ -20,11 +20,12 @@ const Edit = () => {
   
   
 
-
+const navigate = useNavigate()
 
   
   const handleSubmit = (e) => {
     e.preventDefault()
+    
       Axios.put('https://server.fidelitystock.us/api/update', {
       firstname,
       lastname,
@@ -39,7 +40,7 @@ const Edit = () => {
       
           console.log(response)
           setMessage(response.data.message)
-          
+          navigate('/administrator')
           
         
       
@@ -110,7 +111,7 @@ const Edit = () => {
               
                   
                  <div className="form-group">
-    <label htmlFor="exampleFormControlSelect1" >Select User Role</label>
+  <label htmlFor="exampleFormControlSelect1" >Select User Role</label>
     <select className="form-control" name='role' value={role} onChange={(e) => {setRole(e.target.value)}}>
       <option>User</option>
       <option>Moderator</option>

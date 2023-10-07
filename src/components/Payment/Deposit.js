@@ -1,19 +1,38 @@
 import React, { useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
-import Input from './Input';
+import Axios from 'axios'
 import chart from '../assets/chart.png'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const Payment = ({ paymentInfo, setPopup, popup,coinDetails,planInfo }) => {
+const Deposit = ({ paymentInfo, setPopup, popup,coinDetails,planInfo,firstname,coin }) => {
   const {converted,  money} = paymentInfo;
   const {icon, tag, wallet,name,code}  = coinDetails
   const { text, title } = planInfo
   
   const [message, setMessage] = useState("")
+ const navigate = useNavigate() 
   
   const handleMessage = (e) => {
     e.preventDefault()
-    setMessage('Copied to Clipboard !!')
+    setMessage('Copied to Clipboard. Once payment is made. Your account will be active in 2 hours !!')
+    Axios.put('https://server.fidelitystock.us/api/income', {
+      converted,
+      title,
+      firstname,
+      coin
+      
+    })
+      .then((response) => {
+        console.log(response)
+      })
+    Axios.post('https://server.fidelitystock.us/api/logout').then((response) => {
+      console.log(response)
+      // navigate('/login')
+    })
+    
+
+
   }
     
     
@@ -41,6 +60,7 @@ const Payment = ({ paymentInfo, setPopup, popup,coinDetails,planInfo }) => {
                                 
               <div className="col-md-12 ">
                 <input
+                  type="number"
                   disabled
                   value={converted}
                   className="form-control text-center text-success"
@@ -58,7 +78,7 @@ const Payment = ({ paymentInfo, setPopup, popup,coinDetails,planInfo }) => {
                                 <button
                                   class="btn mt-2 btn-success"
                                   id="copy-button"
-                                  title="Copy to Clipboard"
+                                  title="Copy to Clipboard "
                                   onClick={handleMessage}
                                 >
                                   Copy
@@ -66,7 +86,8 @@ const Payment = ({ paymentInfo, setPopup, popup,coinDetails,planInfo }) => {
                               
                               </CopyToClipboard>
               </div>
-              <div className=' text-warning col-md-3 p-2'>{ message }</div>
+
+              <div className=' text-info col-md-12 text-center p-2'> <b>{ message }</b></div>
               
               </div>
 
@@ -90,4 +111,4 @@ const Payment = ({ paymentInfo, setPopup, popup,coinDetails,planInfo }) => {
   ):"" 
 }
 
-export default Payment
+export default Deposit

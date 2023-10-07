@@ -1,7 +1,5 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import {FaPencilAlt,   FaUser } from "react-icons/fa"
-import { NavLink } from "react-router-dom"
 import Others from "./Others"
 import User from "./User"
 

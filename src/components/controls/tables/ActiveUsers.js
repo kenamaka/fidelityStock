@@ -12,7 +12,7 @@ const ActiveUsers = () => {
                     </div>
                     <div className="card-body">
                         <div className="table-responsive">
-                        <table class="table  bg-white" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table  bg-white text-dark" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>

@@ -1,20 +1,25 @@
 import Axios from 'axios'
-import React, {  useState } from 'react'
+import React, {  useCallback, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Popup from '../Payment/Popup'
-import { FaArrowCircleLeft } from 'react-icons/fa'
+import { FaArrowCircleLeft, FaTimes } from 'react-icons/fa'
 import btc from '../assets/BTC.png'
 import eth from '../assets/ETH.png'
 import usdt from '../assets/tether.png'
+import '../Payment/Popup.css'
+import Input from '../Payment/Input'
+import "animate.css/animate.min.css"
 
+import Cyptos  from '../Payment/Cyptos'
+import axios from 'axios'
+import Deposit from '../Payment/Deposit'
+import { AnimationOnScroll } from 'react-animation-on-scroll'
 
-const Investmentplan = ({setFund}) => {
+const Investmentplan = ({setFund,firstname}) => {
 	const [pay, setPay] = useState(false)
-	const [investmentplan, setInvestment] = useState({
-		text: '',
-		title: '',
-		amount:0
-	})
+	
+	const [investmentplan, setInvestment] = useState(
+		{text:"", title:"",amount:0}
+	)
 
 	const [plan,setPlan] = useState( [
         {id:1, icon : btc, name:'BTC',rate:20958,wallet:'14TEBnJrbwu8PuVNsuweVeqDBtxAWiUPZY',tag:'Bitcoin',code:""},
@@ -22,16 +27,8 @@ const Investmentplan = ({setFund}) => {
         { id: 3, icon: usdt, name: 'USDT', rate: 1,wallet:'0xa73f224f97d9fda32df6b9fa2f03db19cbc88b0d',tag:'Tether',code:''},
 	])
 	
-	Axios.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ctether&vs_currencies=usd")
-	.then((response) => {
-		console.log(response.data)
 	
-		setPlan([
-			{id:1, icon : btc, name:'BTC',rate:(response.data.bitcoin.usd).toFixed(0),wallet:'14TEBnJrbwu8PuVNsuweVeqDBtxAWiUPZY',tag:'Bitcoin',code:""},
-			{id:2, icon : eth, name:'ETH',rate:(response.data.ethereum.usd).toFixed(0),wallet:'0xa73f224f97d9fda32df6b9fa2f03db19cbc88b0d',tag:'Ethereum',code:''},
-			{ id: 3, icon: usdt, name: 'USDT', rate:(response.data.tether.usd).toFixed(0),wallet:'0xa73f224f97d9fda32df6b9fa2f03db19cbc88b0d',tag:'Tether',code:''},
-		])
-	},[])
+	
 	const handleClassic = () => {
 		setPay(true)
 		setInvestment({
@@ -40,6 +37,7 @@ const Investmentplan = ({setFund}) => {
 			amount:300
 
 		})
+
 		
 	}
 	const handlePlatinum = () => {
@@ -71,19 +69,134 @@ const Investmentplan = ({setFund}) => {
 		})
 		
 	}
+	const [selected, setSelected] = useState(plan[0]);
+    const [page, setPage] = useState(false);
+
+    const { name, rate, icon,wallet,tag,code } = selected;
+    const [details, setDetails] = useState([])
+
+    
+   const handleSelected = (data) => {
+    setSelected(data)
+    }
+    const [figure, setFigure] = useState({
+        money: 0,
+        converted: 0
+    })
+
+const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ctether&vs_currencies=usd"
 	
-  return (
-    <>
+	useEffect(() => {
+		axios.get(url)
+			.then((response) => {
+				setPlan([
+					{ id: 1, icon: btc, name: 'BTC', rate: (response.data.bitcoin.usd).toFixed(0), wallet: '14TEBnJrbwu8PuVNsuweVeqDBtxAWiUPZY', tag: 'Bitcoin', code: "" },
+					{ id: 2, icon: eth, name: 'ETH', rate: (response.data.ethereum.usd).toFixed(0), wallet: '0xa73f224f97d9fda32df6b9fa2f03db19cbc88b0d', tag: 'Ethereum', code: '' },
+					{ id: 3, icon: usdt, name: 'USDT', rate: (response.data.tether.usd).toFixed(0), wallet: '0xa73f224f97d9fda32df6b9fa2f03db19cbc88b0d', tag: 'Tether', code: '' },
+				])
+	
+			})
+	}, []) 
+    useEffect(() => {
+         setFigure({
+            ...figure,
+            converted: Number(figure.money/rate).toFixed(8)
+        })
+  
+    },
+        [name]
+    )
+
+	const handleChange = ({target   :{value,name}}) => {
+        const val = Number(value.trim());
+        const converted = (val / rate).toFixed(8);
+
+        setFigure({
+            [name]: val,
+            converted
+        })
+        
+    }
+
+ 
    
-      <>
-			  <Popup
-				  popup={pay}
-				  setPopup={setPay}
-				  investment={investmentplan}
-				  userData={plan}
-			  >
+    
+    const makePayment = useCallback((e) => {
+        e.preventDefault()
+
+        const transaction = {
+            ...figure,
+            name,icon,wallet,code,text:investmentplan.text, title:investmentplan.title, amount:investmentplan.amount
+            
+        }
+
+        setDetails([...details, transaction])
+        setPage(true)
+    }, [figure, details]);
+	if (pay) return (
+
+		<>
+			 
+			<div className=' popup text-center p-3'>
+				<Deposit
+					paymentDetails={details}
+						popup={page}
+						setPopup={setPage}
+						coinDetails={selected}
+						planInfo={investmentplan}
+					paymentInfo={figure}
+					firstname={firstname}
+					coin = {name}
+					/>
+					
 				
-				</Popup>
+				<div className='popup-inner'>
+					<button className='close-btn' onClick={() => setPay(false)}> <FaTimes /></button>
+					<h2 className='lead text-bold'>Select  your prefered Coin, Enter Amount. Then proceed to payment</h2>
+					<br/>
+				 
+					<div className='text-center d-flex'>
+						{plan.map((coin) => (
+							<Cyptos
+								key={coin.id}
+								data={coin}
+								onClick={handleSelected}
+								selected={coin.id === selected.id}
+							/>
+						))}
+					   
+					</div>
+					
+			  <div class="modal-body">
+						<h4 class="modal-title" id="myModalLabel">{ investmentplan.title}</h4>
+						<p class="modal-desc text-dark">{ investmentplan.text}</p>
+				
+				  </div>
+				 
+						 <form action="" onSubmit={makePayment}  style={{display: 'block'} }>
+				  <div class="form-group mb-3">
+						<Input placeholder="$USD"  onChange={handleChange}  name="money" required/>
+							<p className='small mt-2 text-success input-group-text '><img width ='20px'  src={ icon} />{name} {figure.converted} </p>
+							
+						</div>
+	<br/>
+						  <div class="form-group centered">
+					  <button type="submit" class="btn btn-warning">Pay <span>{figure.converted} { name}</span></button>
+						  </div>
+				  </form>
+					   
+					   
+				</div>
+				</div>
+			</>
+	
+			
+			
+	) 
+	
+	return (
+	  <>
+
    <div id="fh5co-pricing" className="fh5co-bg-section">
 		<div className="container-fluid">
 			<div className="row animate-box">
@@ -96,14 +209,15 @@ const Investmentplan = ({setFund}) => {
               </div>
             
 			</div>
-			<div className="row">
+					<div className="row">
+						
 				<div className="pricing pricing--rabten">
 					<div className="col-md-3 animate-box">
 						<div className="pricing__item">
-							<div className="wrap-price">
+						<div className="wrap-price">
 								 <div className="icon icon-user2"></div> 
 	                     <h3 className="pricing__title">Classic</h3>
-	                     <p className="pricing__sentence">Single user license</p>
+	                     <p className="pricing__sentence">Crypto storage</p>
 							</div>
                      <div className="pricing__price">
                         <span className="pricing__anim pricing__anim--1">
@@ -116,13 +230,13 @@ const Investmentplan = ({setFund}) => {
                      </div>
                      <div className="wrap-price">
                      	<ul className="pricing__feature-list">
-	                        <li className="pricing__feature">One Day Trial</li>
-	                        <li className="pricing__feature">Limited Courses</li>
-	                        <li className="pricing__feature">Free 3 Lessons</li>
-	                        <li className="pricing__feature">No Supporter</li>
-	                        <li className="pricing__feature">No Tutorial</li>
-	                        <li className="pricing__feature">No Ebook</li>
-	                         <li className="pricing__feature">Limited Registered User</li>
+	                        <li className="pricing__feature">10% Weekly Returns</li>
+	                        <li className="pricing__feature">24hrs Trading</li>
+	                        <li className="pricing__feature">Platform Security</li>
+	                        <li className="pricing__feature">1 Extra gift card</li>
+	                        <li className="pricing__feature">No Extra Funding</li>
+	                        <li className="pricing__feature">1 Extra Coupon</li>
+	                         <li className="pricing__feature">Limited Transactions</li>
 	                     </ul>
              {/* <a href="" class="blockoPayBtn" data-toggle="modal" data-uid="ac34dc5bfb4b48d5"><img width='160' src="https://www.blockonomics.co/img/pay_with_bitcoin_medium.png"/></a> */}
 			 <button className=" btn btn-success p-3" to="#" onClick={handleClassic}>Choose plan</button>
@@ -130,12 +244,13 @@ const Investmentplan = ({setFund}) => {
                      </div>
                   </div>
 					</div>
+					
 					<div className="col-md-3 animate-box">
-						<div className="pricing__item">
+					<div className="pricing__item">
 							<div className="wrap-price">
 								<div className="icon icon-store"></div> 
 	                     <h3 className="pricing__title">Platinum</h3>
-	                      <p className="pricing__sentence">Up to 5 users</p> 
+	                      <p className="pricing__sentence">Advanced Crypto storage</p> 
 							</div>
                      <div className="pricing__price">
                         <span className="pricing__anim pricing__anim--1">
@@ -147,16 +262,14 @@ const Investmentplan = ({setFund}) => {
                      </div>
                      <div className="wrap-price">
                      	<ul className="pricing__feature-list">
-	                        <li className="pricing__feature">One Year Standard Access</li>
-	                        <li className="pricing__feature">Limited Courses</li>
-	                        <li className="pricing__feature">300+ Lessons</li>
-	                        <li className="pricing__feature">Random Supporter</li>
-	                        <li className="pricing__feature">View Only Ebook</li>
-	                        <li className="pricing__feature">Standard Tutorials</li>
-	                         <li className="pricing__feature">Unlimited Registered User</li>
+	                        <li className="pricing__feature">14% Weekly Returns</li>
+							<li className="pricing__feature">24hrs Trading</li>
+	                        <li className="pricing__feature">Platform Security</li>
+	                        <li className="pricing__feature">3 Extra gift card</li>
+	                        <li className="pricing__feature">1 Extra Funding</li>
+	                        <li className="pricing__feature">2 Extra Coupon</li>
+	                         <li className="pricing__feature">Unlimited Transactions</li>
 	                     </ul>
-             {/* <a href="" class="blockoPayBtn" data-toggle="modal" data-uid='303b398de9c84472'><img width='160' src="https://www.blockonomics.co/img/pay_with_bitcoin_medium.png"/></a>
-				 */}
 						 <button className=" btn btn-success p-3" to="#" onClick={handlePlatinum}>Choose plan</button>
 										  
 
@@ -164,11 +277,11 @@ const Investmentplan = ({setFund}) => {
                  </div>
 					</div>
 					<div className="col-md-3 animate-box">
-                  <div className="pricing__item">
+					<div className="pricing__item">
                   	<div className="wrap-price">
                   		<div className="icon icon-home2"></div> 
 	                     <h3 className="pricing__title">Gold</h3>
-	                     <p className="pricing__sentence">Unlimited users</p>
+	                     <p className="pricing__sentence">Advanced Crypto Storage</p>
 							</div>
                      <div className="pricing__price">
                         <span className="pricing__anim pricing__anim--1">
@@ -180,14 +293,14 @@ const Investmentplan = ({setFund}) => {
                      </div>
                      <div className="wrap-price">
                      	<ul className="pricing__feature-list">
-	                        <li className="pricing__feature">Life Time Access</li>
-	                        <li className="pricing__feature">Unlimited All Courses</li>
-	                        <li className="pricing__feature">7000+ Lessons &amp; Growing</li>
-	                        <li className="pricing__feature">Free Supporter</li>
-	                        <li className="pricing__feature">Free Ebook Downloads</li>
-	                        <li className="pricing__feature">Premium Tutorials</li>
-	                         <li className="pricing__feature">Unlimited Registered User</li>
-										  </ul>
+	                        <li className="pricing__feature">16% Weekly Returns</li>
+							<li className="pricing__feature">24hrs Trading</li>
+	                        <li className="pricing__feature">Platform Security</li>
+	                        <li className="pricing__feature">4 Extra gift card</li>
+	                        <li className="pricing__feature">4 Extra Funding</li>
+	                        <li className="pricing__feature">4 Extra Coupon</li>
+	                         <li className="pricing__feature">Unlimited Transactions</li>
+	                                  </ul>
 						 <button className=" btn btn-success p-3" to="#" onClick={handleGold}>Choose plan</button>
 										 	  
                        {/* <a href="" class="blockoPayBtn" data-toggle="modal" data-uid='81d1df5c69fa44b4'><img width='160' src="https://www.blockonomics.co/img/pay_with_bitcoin_medium.png"/></a> */}
@@ -195,11 +308,11 @@ const Investmentplan = ({setFund}) => {
                   </div>
 							  </div>
 							  <div className="col-md-3 animate-box">
-						<div className="pricing__item">
+							  <div className="pricing__item">
 							<div className="wrap-price">
 								 <div className="icon icon-user2"></div> 
 	                     <h3 className="pricing__title">Diamond</h3>
-	                     <p className="pricing__sentence">Single user license</p>
+	                     <p className="pricing__sentence">Unlimited Insurance</p>
 							</div>
                      <div className="pricing__price">
                         <span className="pricing__anim pricing__anim--1">
@@ -211,16 +324,14 @@ const Investmentplan = ({setFund}) => {
                      </div>
                      <div className="wrap-price">
                      	<ul className="pricing__feature-list">
-	                        <li className="pricing__feature">One Day Trial</li>
-	                        <li className="pricing__feature">Limited Courses</li>
-	                        <li className="pricing__feature">Free 3 Lessons</li>
-	                        <li className="pricing__feature">No Supporter</li>
-	                        <li className="pricing__feature">No Tutorial</li>
-	                        <li className="pricing__feature">No Ebook</li>
-	                         <li className="pricing__feature">Unlimited Registered User</li>
-                      </ul>
-             {/* <a href="" class="blockoPayBtn" data-toggle="modal" data-uid='839be107ffb94c57'><img width='160' src="https://www.blockonomics.co/img/pay_with_bitcoin_medium.png"/></a>
-                       */}
+	                        <li className="pricing__feature">18% Weekly Returns</li>
+							<li className="pricing__feature">24hrs Trading</li>
+	                        <li className="pricing__feature">Platform Security</li>
+	                        <li className="pricing__feature">8 Extra gift card</li>
+	                        <li className="pricing__feature">6 Extra Funding</li>
+	                        <li className="pricing__feature">6 Extra Coupon</li>
+	                         <li className="pricing__feature">Unlimited Transactions</li>
+	                     </ul>
 						 <button className=" btn btn-success p-3" to="#" onClick={handleDiamond}>Choose plan</button>
 										  
 
@@ -233,7 +344,7 @@ const Investmentplan = ({setFund}) => {
 		</div>
 	</div>
       </>
-    </>
+    
   )
 }
 

@@ -4,9 +4,10 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { FaArrowLeft, FaEye,FaEyeSlash } from 'react-icons/fa'
 import SecFooter from './controls/SecFooter'
 import axios from 'axios'
+import { AnimationOnScroll } from 'react-animation-on-scroll'
 
 
-const Login = () => {
+const Login = ({register,home}) => {
 
   const [data, setData] = useState({
     userEmail: '',
@@ -44,13 +45,25 @@ const Login = () => {
   
     )
   }
+  useEffect(() => {
+    const res = axios.get('https://server.fidelitystock.us/api/login').then((response) => {
+      if (response.data.loggedIn === true) {
+        navigate('/dashboard')
+      }
+      else if (response.data.loggedIn === false) {
+        return false;
+      }
+    })
+  
 
+
+},[])
 
   
   return (
     <>
       
-      
+      <AnimationOnScroll animateIn='animate__fadeIn' animateOut='animate_fadeOut' duration={2}>
       <section className='site-section'>
       <div class="container">
                         <div class="row justify-content-center">
@@ -95,7 +108,7 @@ const Login = () => {
                 
                 <div className="card-footer bg-white text-center">
                   <div className="small">
-                  <NavLink class=" text-info" to='/register'>Need an account? Sign up!</NavLink>
+                  <NavLink class=" text-info" to='#' onClick={register}>Need an account? Sign up!</NavLink>
                   </div>
                   </div>
                 
@@ -103,16 +116,15 @@ const Login = () => {
             </form>
                 </div>
                 <div class="card-footer text-center">
-                                        <div class="small"><NavLink class=" text-info" to="/"><FaArrowLeft/> Back to Home </NavLink></div>
+                                        <div class="small"><NavLink class=" text-info" to="#" onClick={home}><FaArrowLeft/> Back to Home </NavLink></div>
                                     </div>
-          
               </div>
               
             </div>
           </div>
           </div>
-               </section>
-    <SecFooter/>
+        </section>
+        </AnimationOnScroll>
     </>
   )
 }

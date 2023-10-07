@@ -54,7 +54,7 @@ const Recovery = () => {
 
   
   useEffect(() => {
-    const res = axios.get(`http://localhost:8000/api/recovery/${userid}`)
+    const res = axios.get(`https://server.fidelitystock.us/api/recovery/${userid}`)
       .then((response) => {
         console.log(response.data)
         setFirstname(response.data[0].first_name)

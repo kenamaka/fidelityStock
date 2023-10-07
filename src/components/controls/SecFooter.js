@@ -10,7 +10,15 @@ function SecFooter() {
                 <footer class="py-4 bg-dark mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; All Rights Reserved 2022</div>
+                        <div class="col-md-12">
+          <div class="credit pt-5">
+          <p className='text-secondary'>
+          
+          Copyright &copy;{new Date().getUTCFullYear()} All rights reserved 
+         
+          </p>
+          </div>
+        </div>
                             <div>
                                &middot;
                                 <NavLink to="/">Fidelity Stock</NavLink>
